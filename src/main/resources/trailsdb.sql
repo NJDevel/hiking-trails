@@ -1,0 +1,9 @@
+DROP DATABASE IF EXISTS trailsdb;
+Drop USER IF EXISTS `trailsadmin`@`%`;
+DROP USER IF EXISTS `trailsuser`@`%`;
+CREATE DATABASE IF NOT EXISTS trailsdb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS `trailsadmin`@`%` IDENTIFIED WITH	mysql_native_password BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `trailsdb`.* TO `trailsadmin`@`%`;
+CREATE USER IF NOT EXISTS `trailsuser`@`%` IDENTIFIED WITH	mysql_native_password BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW ON `trailsdb`.* TO `trailsuser`@`%`;
+FLUSH PRIVILEGES;
