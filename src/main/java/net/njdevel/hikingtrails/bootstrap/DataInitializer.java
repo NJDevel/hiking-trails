@@ -3,8 +3,10 @@ package net.njdevel.hikingtrails.bootstrap;
 import net.njdevel.hikingtrails.domain.Trail;
 import net.njdevel.hikingtrails.repositories.TrailsRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+@Profile({"local", "default"})
 @Component
 public class DataInitializer implements CommandLineRunner {
     private final TrailsRepository trailsRepository;
