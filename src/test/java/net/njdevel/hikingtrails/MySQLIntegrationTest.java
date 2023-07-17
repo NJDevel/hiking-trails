@@ -1,46 +1,29 @@
 package net.njdevel.hikingtrails;
 
-import net.njdevel.hikingtrails.domain.Trail;
 import net.njdevel.hikingtrails.repositories.TrailsRepository;
 import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.annotation.Commit;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
+import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ComponentScan(basePackages = {"net.njdevel.hikingtrails.bootstrap"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class SpringDataJpaTestSlice {
+class MySQLIntegrationTest {
 
     @Autowired
     TrailsRepository trailsRepository;
 
     @Test
-    @Commit
-    @Order(1)
-    void testJpaTestSplice() {
+    void testMySQL() {
         long countBefore = trailsRepository.count();
-
-        trailsRepository.save(new Trail(4L, "Sunshine Mountain", "2 East Jersey, NJ", "2.5", "http://sunhinemountain.hike"));
-
-        long countAfter = trailsRepository.count();
-
-        assertThat(countBefore).isLessThan(countAfter);
+        assertThat(countBefore).isEqualTo(2);
     }
 
-    @Test
-    @Order(2)
-    void testJpaTransactionTestSplci() {
-        long count = trailsRepository.count();
-
-        assertThat(count).isEqualTo(3);
-    }
 }

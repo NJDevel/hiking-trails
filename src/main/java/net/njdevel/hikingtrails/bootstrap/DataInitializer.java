@@ -16,12 +16,13 @@ public class DataInitializer implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
+        trailsRepository.deleteAll();
 
         Trail firstTrail = new Trail(1L, "Cornish Ruins", "1 Place Pl, New Amityville, NY", "2.4", "http://cornishruin.org");
 
         Trail savedFirstTrail = trailsRepository.save(firstTrail);
 
-        Trail secondTrail = new Trail(2L, "Breakneck", "2 Place Pl, New Amityville, NY", "2.4", "http://breakneck.org");
+        Trail secondTrail = new Trail(2L, "Breakneck", "3 Sunny Side Dr, New Hope Mountain, NJ", "3.8", "http://breakneck.org");
 
         Trail savedsecondTrail = trailsRepository.save(secondTrail);
 
